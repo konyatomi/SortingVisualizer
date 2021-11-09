@@ -1,0 +1,58 @@
+/*comment*/
+
+:root{
+    --font-size-17: calc((17 / 16) * 1rem);
+    --font-size-22: calc((22 / 16) * 1rem);
+
+    --header-button: #3498db;
+    --header-button-hover: #2980b9;
+}
+
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+html, body{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#container{
+    position: relative;
+    width: 100%;
+    padding: 5em 10em;
+}
+
+header{
+    display: grid;
+    grid-template-columns: 10rem 10rem calc(100% - 24rem - 20em);
+    gap: 2rem;
+    width: 100%;
+}
+
+header > button{
+    display: block;
+    width: 10rem;
+    background-color: var(--header-button);
+    border-radius: 0.5rem;
+    border: none;
+    user-select: none;
+    padding: 0.75em 0;
+    cursor: pointer;
+}
+
+header > button:last-child{
+    justify-self: end;
+}
+
+header > button:hover{
+    background-color: var(--header-button-hover);
+}
+
+main{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 2rem;
+}

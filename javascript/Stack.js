@@ -1,6 +1,6 @@
 //TODO: Randomize class, Sort class, BubbleSort class
 
-class Stack
+export default class Stack
 {
     constructor()
     {
@@ -15,6 +15,11 @@ class Stack
     pop()
     {
         return this._stackArray.pop();
+    }
+
+    at(index)
+    {
+        return this._stackArray[index];
     }
 
     get size()
