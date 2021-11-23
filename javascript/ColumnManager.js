@@ -3,10 +3,16 @@ import { s } from "./utility.js";
 
 export default class ColumnManager
 {
-    constructor(visualizerId) 
+    constructor({visualizerId, columnColor, columnHeadColor, columnSelectedColor}) 
     {
         this._columns = []
         this._vid = visualizerId;
+
+        this._columnColor = columnColor;
+        this._columnHeadColor = columnHeadColor;
+        this._columnSelectedColor = columnSelectedColor;
+
+        this._BORDER_SIZE = 5;
     }
 
     swap(c1, c2)
@@ -16,15 +22,14 @@ export default class ColumnManager
 
     generate(n)
     {
+        let display_width = s("v_display_" + this._vid).getBoundingClientRect().width - (this._BORDER_SIZE * 2);
+
         for(let i = 0; i < n; i++)
         {
-            let column = new Column(i * 10, i);
+            let column = new Column(display_width / n * (i + 1), i);
             this._columns.push(column);
         }
-        console.log(this._columns);
-        console.log(this._columns[3].height);
         this._columns[3].selected = true;
-        console.log(this._columns[3]);
     }
 
     draw(clear = false)
@@ -37,7 +42,16 @@ export default class ColumnManager
 
         for(let column of this._columns)
         {
-            display.innerHTML += column.template();
+            if(column.selected){
+                display.innerHTML += column.template(this._columnHeadColor, this._columnSelectedColor);
+            }
+            else{
+                display.innerHTML += column.template(this._columnHeadColor, this._columnColor);
+            }
+
+
+            column.node = display.children[display.children.length - 1];
+            column.node.style.order = column.order;
         }
     }
 
@@ -48,5 +62,23 @@ export default class ColumnManager
         while(display_columns[0]){
             display_columns[0].remove();
         }
+
+        
+    }
+
+    reset()
+    {
+        this.clear();
+        this._columns = [];
+    }
+
+    get columns()
+    {
+        return this._columns;
+    }
+
+    set columns(value)
+    {
+        this._columns = value;
     }
 }

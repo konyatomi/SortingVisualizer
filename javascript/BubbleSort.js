@@ -1,4 +1,11 @@
 export default class BubbleSort
 {
-    constructor() {}
+    constructor() {
+
+    }
+
+    randomize()
+    {
+        
+    }
 }

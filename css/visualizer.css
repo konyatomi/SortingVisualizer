@@ -1,17 +1,25 @@
 .v_cont{
     position: relative;
-    width: 30rem;
+    width: 500px;
 }
 
 .v_display{
     display: flex;
-    width: 30rem;
-    height: 30rem;
+    gap: 2px;
+    align-items: flex-end;
+    width: 500px;
+    height: 500px;
     background-color: #FAFAFA;
     border: 5px solid #444;
 }
 
 .v_controls{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.v_display > div{
+    min-width: 1px;
+    min-height: 1px;
+    flex: 1 1 auto;
 }
