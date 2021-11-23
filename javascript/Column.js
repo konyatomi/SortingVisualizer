@@ -7,6 +7,7 @@ export default class Column
         this._selected = selected;
 
         this._GAP_SIZE = 2;
+        this._ORIGINAL_ORDER = order;
     }
 
     template(head_color, column_color)
@@ -58,10 +59,10 @@ export default class Column
                 transparent 0,
                 transparent ${this._GAP_SIZE}px,
                 ${head_color} ${this._GAP_SIZE}px,
-                ${head_color} ${this._rawHeight / (this._order + 1)}px,
-                transparent ${this._rawHeight / (this._order + 1)}px, 
-                transparent ${this._rawHeight / (this._order + 1) + this._GAP_SIZE}px,
-                ${column_color} ${this._rawHeight / (this._order + 1) + this._GAP_SIZE}px,
+                ${head_color} ${this._rawHeight / (this._ORIGINAL_ORDER + 1)}px,
+                transparent ${this._rawHeight / (this._ORIGINAL_ORDER + 1)}px, 
+                transparent ${this._rawHeight / (this._ORIGINAL_ORDER + 1) + this._GAP_SIZE}px,
+                ${column_color} ${this._rawHeight / (this._ORIGINAL_ORDER + 1) + this._GAP_SIZE}px,
                 ${column_color} 100%);
        `
     }

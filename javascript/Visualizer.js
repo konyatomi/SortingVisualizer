@@ -36,19 +36,18 @@ export default class Visualizer
 
         s("clear_btn_" + this._vid).onclick = () => this._ColumnManager.reset();
         s("randomize_btn_" + this._vid).onclick = () => {
-            let cm = this._ColumnManager;
-            this._Randomizer = new Randomizer(cm, (new this._config.randomizerAlgo()));
+            this._Randomizer = new Randomizer(this._ColumnManager, new this._config.randomizerAlgo());
             this._Randomizer.randomize();
         }
 
         s("rand_algo_" + this._vid).change = evt => {
             switch(evt.target.value){
                 case "Fisheryates": 
-                    this.config.randomizerAlgo = FisherYates;
+                    this._config.randomizerAlgo = FisherYates;
                     break;
                 
                 default: 
-                    this.config.randomizerAlgo = FisherYates;
+                    this._config.randomizerAlgo = FisherYates;
                     break;
             } 
         }
@@ -62,7 +61,7 @@ export default class Visualizer
     defaultConfig()
     {
         return {sortAlgo: BubbleSort,
-                randomizerAlgo: Randomizer,
+                randomizerAlgo: FisherYates,
                 columnColor: "#DDD",
                 columnHeadColor: "#444",
                 columnSelectedColor: "red"};
