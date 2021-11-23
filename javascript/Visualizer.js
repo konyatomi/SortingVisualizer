@@ -2,6 +2,7 @@ import BubbleSort from "./BubbleSort.js";
 import ColumnManager from "./ColumnManager.js";
 import FisherYates from "./FisherYates.js";
 import Randomizer from "./Randomizer.js";
+import Sort from "./Sort.js";
 import { s } from "./utility.js";
 
 export default class Visualizer
@@ -35,9 +36,15 @@ export default class Visualizer
             
 
         s("clear_btn_" + this._vid).onclick = () => this._ColumnManager.reset();
+        
         s("randomize_btn_" + this._vid).onclick = () => {
             this._Randomizer = new Randomizer(this._ColumnManager, new this._config.randomizerAlgo());
             this._Randomizer.randomize();
+        }
+
+        s("sort_btn_" + this._vid).onclick = () => {
+            this._Sort = new Sort(this._ColumnManager, new this._config.sortAlgo(s("delay_" + this._vid).value));
+            this._Sort.sort();
         }
 
         s("rand_algo_" + this._vid).change = evt => {
@@ -46,8 +53,20 @@ export default class Visualizer
                     this._config.randomizerAlgo = FisherYates;
                     break;
                 
-                default: 
+                 default: 
                     this._config.randomizerAlgo = FisherYates;
+                    break;
+            } 
+        }
+
+        s("sort_algo_" + this._vid).change = evt => {
+            switch(evt.target.value){
+                case "BubbleSort": 
+                    this._config.sortAlgo = BubbleSort;
+                    break;
+                
+                 default: 
+                    this._config.sortAlgo = BubbleSort;
                     break;
             } 
         }
@@ -64,7 +83,8 @@ export default class Visualizer
                 randomizerAlgo: FisherYates,
                 columnColor: "#DDD",
                 columnHeadColor: "#444",
-                columnSelectedColor: "red"};
+                columnSelectedColor: "red", 
+                sortDelay: 50};
     }
 
     template(){
@@ -77,10 +97,14 @@ export default class Visualizer
                     <button id='generate_btn_${this._vid}'>Generate</button>
                     <button id='clear_btn_${this._vid}'>Clear</button>
                     <button id='randomize_btn_${this._vid}'>Randomize</button>
-                    <input type='number' id='columns_${this._vid}' min='0' max='1000'/>
-                    <div></div>
+                    <button id='sort_btn_${this._vid}'>Sort</button>
+                    <input type='number' id='columns_${this._vid}' min='0' max='1000' value='50'/>
+                    <input type='number' id='delay_${this._vid}' min='0' max='1000' value='200'/>
                     <select id='rand_algo_${this._vid}'>
                         <option value='Fisheryates'>Fisher-Yates</option>
+                    </select>
+                    <select id='sort_algo_${this._vid}'>
+                        <option value='BubbleSort'>Bubble Sort</option>
                     </select>
                 </div>
             </div>

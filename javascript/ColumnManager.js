@@ -17,7 +17,8 @@ export default class ColumnManager
 
     swap(c1, c2)
     {
-
+        [this._columns[c1], this._columns[c2]] = [this._columns[c2], this._columns[c1]];
+        this.draw(true);
     }
 
     generate(n)

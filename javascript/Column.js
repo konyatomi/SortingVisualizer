@@ -52,6 +52,11 @@ export default class Column
         return this._node;
     }
 
+    order()
+    {
+        return this._order;
+    }
+
     background(head_color, column_color)
     {
         return `
