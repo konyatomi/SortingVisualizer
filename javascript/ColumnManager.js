@@ -14,8 +14,6 @@ export default class ColumnManager
         this._columnSelectedColor = columnSelectedColor;
 
         this._BORDER_SIZE = 5;
-
-        this.just_reset = false;
     }
 
     swap(c1, c2)
@@ -74,7 +72,6 @@ export default class ColumnManager
     {
         this.clear();
         this._columns = [];
-        this.just_reset = true;
     }
 
     get columns()
