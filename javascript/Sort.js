@@ -4,11 +4,11 @@ export default class Sort
     {
         this._Sorting = SortingClass;
         this._ColumnManager = ColumnManagerClass;
+        this._ColumnManager.just_reset = false;
     }
 
     sort()
     {
-        console.log("valami");
         this._Sorting.sort(this._ColumnManager);
     }
 }

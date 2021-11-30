@@ -3,16 +3,19 @@ import { s } from "./utility.js";
 
 export default class ColumnManager
 {
-    constructor({visualizerId, columnColor, columnHeadColor, columnSelectedColor}) 
+    constructor({visualizerId, vClass, columnColor, columnHeadColor, columnSelectedColor}) 
     {
         this._columns = []
         this._vid = visualizerId;
+        this._vClass = vClass;
 
         this._columnColor = columnColor;
         this._columnHeadColor = columnHeadColor;
         this._columnSelectedColor = columnSelectedColor;
 
         this._BORDER_SIZE = 5;
+
+        this.just_reset = false;
     }
 
     swap(c1, c2)
@@ -71,6 +74,7 @@ export default class ColumnManager
     {
         this.clear();
         this._columns = [];
+        this.just_reset = true;
     }
 
     get columns()
@@ -81,5 +85,10 @@ export default class ColumnManager
     set columns(value)
     {
         this._columns = value;
+    }
+
+    done()
+    {
+        this._vClass.done();
     }
 }
