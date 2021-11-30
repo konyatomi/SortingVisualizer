@@ -17,13 +17,12 @@ export default class Visualizer
     
         
         s("main").innerHTML += this.template();
-        
-        this.addListeners();
     }
 
     run()
     {
-        console.log("hali.");
+        this._Sort = new Sort(this._ColumnManager, new this._config.sortAlgo(s("delay_" + this._vid).value));
+        this._Sort.sort();
     }
 
     done()
@@ -52,8 +51,7 @@ export default class Visualizer
             s("generate_btn_" + this._vid).setAttribute("disabled", "disabled");
             s("clear_btn_" + this._vid).setAttribute("disabled", "disabled");
             
-            this._Sort = new Sort(this._ColumnManager, new this._config.sortAlgo(s("delay_" + this._vid).value));
-            this._Sort.sort();
+            this.run();
         }
 
         s("rand_algo_" + this._vid).change = evt => {

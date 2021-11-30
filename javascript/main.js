@@ -4,7 +4,14 @@ import {s} from "./utility.js";
 
 const visualizers  = new Stack();
 
-s('add_visualizer').onclick = () => visualizers.push(new Visualizer());
+s('add_visualizer').onclick = () => {
+    visualizers.push(new Visualizer());
+
+    for (let i = 0; i < visualizers.size; i++){
+        visualizers.at(i).addListeners();
+    }
+};
+
 s('remove_visualizer').onclick = () => {
     let removed = visualizers.pop();
     removed.removeVisuals();
